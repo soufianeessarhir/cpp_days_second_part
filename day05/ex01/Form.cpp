@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 20:39:46 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/19 11:12:22 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:27:22 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,11 @@ int Form::getToSignedGrad(void)const
 int Form::getToExecuteGrade(void)const
 {
 	return _exec_grade;
+}
+
+void Form::beSigned(Bureaucrat & br)
+{
+	if (this->_sign_grade < br.getgrade())
+		throw Bureaucrat::GradeTooLowException();
+	this->_is_signed = true;
 }

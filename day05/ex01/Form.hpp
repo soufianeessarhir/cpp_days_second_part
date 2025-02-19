@@ -6,11 +6,12 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 20:39:42 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/19 11:05:33 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:34:22 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+
 #include "Bureaucrat.hpp"
 
 class Form
@@ -30,6 +31,7 @@ public:
 	bool getIsSigned(void)const;
 	int getToSignedGrad(void)const;
 	int getToExecuteGrade(void)const;
+	void beSigned(Bureaucrat & br);
 };
 
 std::ostream & operator<<(std::ostream &os, Form &fr);

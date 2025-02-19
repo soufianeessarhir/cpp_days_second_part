@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:41:17 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/19 11:08:19 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:34:32 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define BUREAUCRAT_HPP
 
 # include <iostream>
+// #include "Form.hpp"
+class Form;
 
 class Bureaucrat
 {
@@ -32,6 +34,7 @@ public:
 	Bureaucrat  operator++(int);
 	Bureaucrat & operator--();
 	Bureaucrat  operator--(int);
+	void signForm(Form &fr);
 	class  GradeTooHighException: public std::runtime_error
 	{
 		public:

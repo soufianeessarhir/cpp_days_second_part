@@ -6,11 +6,13 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 15:00:14 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/19 11:08:10 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:38:28 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
+
 
 Bureaucrat::Bureaucrat():_name("default"),_grade(0){}
 Bureaucrat::Bureaucrat(const Bureaucrat& br){*this = br;}
@@ -65,10 +67,25 @@ Bureaucrat& Bureaucrat::operator++()
 std::string Bureaucrat::getname(void)const{return _name;}
 int Bureaucrat::getgrade(void)const{return this->_grade;}
 
-Bureaucrat::GradeTooHighException::GradeTooHighException() : std::runtime_error("grade is less than 1 which is too hight"){}
-Bureaucrat::GradeTooLowException::GradeTooLowException() : std::runtime_error("grade is greater than 150 which is too low"){}
+Bureaucrat::GradeTooHighException::GradeTooHighException() : std::runtime_error("grade is too hight"){}
+Bureaucrat::GradeTooLowException::GradeTooLowException() : std::runtime_error("grade  is too low"){}
 std::ostream &operator<<(std::ostream &os, Bureaucrat &br)
 {
 	os <<br.getname()<<" >, bureaucrat grade " <<" "<<br.getgrade()<<".";
 	return os;
+}
+void Bureaucrat::signForm(Form &fr)
+{
+	if (fr.getIsSigned() == true)
+		std::cout<<" form " << fr.getName() << " is already signed\n";
+	else
+	{
+		fr.beSigned(*this);
+		if (fr.getIsSigned() == true)
+			std::cout<< this->getname() << " signed " << fr.getName() << std::endl;
+		else
+			std::cout<< this->getname() << " couldn’t sign " 
+			<<fr.getName()<< " because " << " he doesn't have the required grade "
+			<< std::endl;
+	}
 }
