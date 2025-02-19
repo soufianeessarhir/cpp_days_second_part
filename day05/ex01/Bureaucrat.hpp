@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:41:17 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/18 18:44:59 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:08:19 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ public:
 		GradeTooLowException();
 	};
 };
-
+std::ostream &operator<<(std::ostream &os, Bureaucrat &br);
 
 #endif

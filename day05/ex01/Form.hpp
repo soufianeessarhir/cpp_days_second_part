@@ -6,11 +6,12 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 20:39:42 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/19 09:16:37 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:05:33 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include "Bureaucrat.hpp"
 
 class Form
 {
@@ -25,5 +26,11 @@ public:
 	Form & operator=(const Form & fr);
 	Form(std::string name,bool is_signed,int sing_grade,int exec_grade);
 	~Form();
+	std::string getName(void)const;
+	bool getIsSigned(void)const;
+	int getToSignedGrad(void)const;
+	int getToExecuteGrade(void)const;
 };
+
+std::ostream & operator<<(std::ostream &os, Form &fr);
 

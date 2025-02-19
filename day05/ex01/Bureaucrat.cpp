@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 15:00:14 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/18 18:48:25 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:08:10 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,8 @@ int Bureaucrat::getgrade(void)const{return this->_grade;}
 
 Bureaucrat::GradeTooHighException::GradeTooHighException() : std::runtime_error("grade is less than 1 which is too hight"){}
 Bureaucrat::GradeTooLowException::GradeTooLowException() : std::runtime_error("grade is greater than 150 which is too low"){}
+std::ostream &operator<<(std::ostream &os, Bureaucrat &br)
+{
+	os <<br.getname()<<" >, bureaucrat grade " <<" "<<br.getgrade()<<".";
+	return os;
+}
