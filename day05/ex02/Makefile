@@ -10,7 +10,7 @@ RESET   = \033[0m
 
 # Program name and compiler
 NAME        = Bureaucrat
-CC          = g++-11
+CC          = c++
 CPPFLAGS    = -Wall -Wextra -Werror -std=c++98
 
 # Source files
