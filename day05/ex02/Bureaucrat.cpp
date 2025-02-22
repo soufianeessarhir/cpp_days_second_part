@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 15:00:14 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/22 15:37:07 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/22 20:39:33 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,12 @@ void Bureaucrat::signForm(AForm &fr)
 			<<fr.getName()<< " because " << " he doesn't have the required grade "
 			<< std::endl;
 	}
+}
+
+void Bureaucrat::executeForm(AForm const & form)const
+{
+	if (form.getToExecuteGrade() < this->getgrade())
+		std::cout<< this->getname() << " can't execute "<< form.getName()<<std::endl;
+	else
+		std::cout<< this->getname() << " executed " << form.getName()<<std::endl;
 }

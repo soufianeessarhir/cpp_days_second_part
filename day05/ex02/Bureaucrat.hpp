@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:41:17 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/19 20:59:38 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/22 20:35:38 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ public:
 	Bureaucrat & operator--();
 	Bureaucrat  operator--(int);
 	void signForm(AForm &fr);
+	void executeForm(AForm const & form)const;
 	class  GradeTooHighException: public std::runtime_error
 	{
 		public:
