@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 15:00:14 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/19 20:59:20 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/22 15:37:07 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,31 @@ Bureaucrat& Bureaucrat::operator++()
 	return *this;
 }
 
-std::string Bureaucrat::getname(void)const{return _name;}
-int Bureaucrat::getgrade(void)const{return this->_grade;}
+std::string Bureaucrat::getname(void)const
+{
+	return _name;
+}
+int Bureaucrat::getgrade(void)const
+{
+	return this->_grade;
+}
 
-Bureaucrat::GradeTooHighException::GradeTooHighException() : std::runtime_error("grade is too hight"){}
-Bureaucrat::GradeTooLowException::GradeTooLowException() : std::runtime_error("grade  is too low"){}
+Bureaucrat::GradeTooHighException::GradeTooHighException() : std::runtime_error("grade is too hight")
+{
+	
+}
+
+Bureaucrat::GradeTooLowException::GradeTooLowException() : std::runtime_error("grade  is too low")
+{
+	
+}
+
 std::ostream &operator<<(std::ostream &os, Bureaucrat &br)
 {
 	os <<br.getname()<<" >, bureaucrat grade " <<" "<<br.getgrade()<<".";
 	return os;
 }
+
 void Bureaucrat::signForm(AForm &fr)
 {
 	if (fr.getIsSigned() == true)

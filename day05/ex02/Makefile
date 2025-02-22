@@ -9,7 +9,7 @@ WHITE   = \033[37;1m
 RESET   = \033[0m
 
 # Program name and compiler
-NAME        = Bureaucrat
+NAME        =ex02 
 CC          = c++
 CPPFLAGS    = -Wall -Wextra -Werror -std=c++98
 

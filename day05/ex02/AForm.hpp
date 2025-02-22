@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 20:39:42 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/19 20:59:47 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/22 20:10:47 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ public:
 	bool getIsSigned(void)const;
 	int getToSignedGrad(void)const;
 	int getToExecuteGrade(void)const;
-	void beSigned(Bureaucrat & br);
+	void beSigned(const Bureaucrat & br);
+	void execute(Bureaucrat const & executor) const;
+	virtual void action() const = 0;
 };
 
 std::ostream & operator<<(std::ostream &os, AForm &fr);
