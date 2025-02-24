@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 10:35:54 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/24 09:47:29 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:16:19 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool ScalarConverter::IsInt(std::string val)
 bool ScalarConverter::IsFloat(std::string val)
 {
 	bool point = false;
-	if (*(val.end()) != 'f')
+	if (*(val.rbegin()) != 'f')
 		return false;
 	std::string::iterator it = val.begin();
 	if (*it == '-')
@@ -52,7 +52,7 @@ bool ScalarConverter::IsFloat(std::string val)
 		point = true;
 		it++;
 	}
-	for(;it != val.end() - 1;it++)
+	for(;it != (val.end() - 1);it++)
 	{
 		if (!isdigit(*it))
 		{
@@ -93,8 +93,8 @@ void ScalarConverter::convert(std::string val)
 	if(val.length() == 1)
 	{
 		int a = atoi(val.c_str());
-		if (isprint(val[0]))
-			std::cout<<"char: " <<static_cast <char>(a)<< std::endl;
+		if (isprint(a))
+			std::cout<<"char: " <<static_cast<char>(a)<< std::endl;
 		else
 			std::cout<<"char: Non displayable\n";
 		std::cout<<"int: " <<static_cast <int>(a)<< std::endl;
@@ -114,7 +114,7 @@ void ScalarConverter::convert(std::string val)
 			std::cout << "double: impossible\n";
 			return ;
 		}
-		if (isprint(val[0]))
+		if (var >= 0 && var <= 127 && isprint(static_cast<char>(var)))
 			std::cout<<"char: " <<static_cast <char>(var)<< std::endl;
 		else
 			std::cout<<"char: Non displayable\n";
@@ -133,7 +133,7 @@ void ScalarConverter::convert(std::string val)
 		else 
 		{
 			int toint = num;
-			if (isprint(toint))
+			if (toint >= 0 && toint <= 127 && isprint(static_cast<char>(toint)))
 				std::cout<<"char: " <<static_cast <char>(toint)<< std::endl;
 			else
 				std::cout<<"char: Non displayable\n";
@@ -153,7 +153,7 @@ void ScalarConverter::convert(std::string val)
 		else 
 		{
 			int toint = num;
-			if (isprint(toint))
+			if (toint >= 0 && toint <= 127 && isprint(static_cast<char>(toint)))
 				std::cout<<"char: " <<static_cast <char>(toint)<< std::endl;
 			else
 				std::cout<<"char: Non displayable\n";
@@ -162,19 +162,19 @@ void ScalarConverter::convert(std::string val)
 		std::cout<<"float: " <<static_cast <float>(num)<< std::endl;
 		std::cout<<"double: " <<static_cast <double>(num)<< std::endl;
 	}
-	else if (val == "-inf" || val == "inf" || val == "nan")
+	else if (val == "-inf" || val == "inf" || val == "+inf" || val == "nan")
 	{
 		std::cout << "char: impossible\n";
 		std::cout << "int: impossible\n";
 		std::cout << "float: " << val + "f\n";
-		std::cout << "float: " << val + "\n";
+		std::cout << "double: " << val + "\n";
 	}
-	else if (val == "-inff" || val == "inff" || val == "nanf")
+	else if (val == "-inff" || val == "inff" || val == "+inff" || val == "nanf")
 	{
 		std::cout << "char: impossible\n";
 		std::cout << "int: impossible\n";
-		std::cout << "float: " << val.erase(3,1) <<std::endl;
-		std::cout << "float: " << val + "\n";
+		std::cout << "float: " << val <<std::endl;
+		std::cout << "double: " << val.erase(3,1) << "\n";
 	}
 	else
 		std::cout << "incorrect input\n";
