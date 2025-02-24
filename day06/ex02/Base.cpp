@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:18:14 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/24 20:17:31 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/24 20:20:25 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ Base *generate(void)
 }
 void identify(Base* p)
 {
-	if (dynamic_cast<A*>(p) != NULL)
+	if (dynamic_cast<A*>(p))
 		std::cout<<" the base pointer type is A\n";
-	else if (dynamic_cast<B*>(p) != NULL)
+	else if (dynamic_cast<B*>(p))
 		std::cout<<" the base pointer type is B\n";
-	else if (dynamic_cast<C*>(p) != NULL)
+	else if (dynamic_cast<C*>(p))
 		std::cout<<" the base pointer type is C\n";
 	else
 		std::cout << "unknown type !!!!!!!!!!!!!\n";
