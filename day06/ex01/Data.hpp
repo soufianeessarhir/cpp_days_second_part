@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 11:02:04 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/24 15:10:37 by sessarhi         ###   ########.fr       */
+/*   Created: 2025/02/24 15:09:10 by sessarhi          #+#    #+#             */
+/*   Updated: 2025/02/24 15:10:07 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #pragma once
-#ifndef  SERIALIZER_CPP
-#define SERIALIZER_CPP
+#ifndef DATA_HPP
+#define DATA_HPP
 #include <iostream>
-
-typedef unsigned long uintptr_t;
-
-#include "Data.hpp"
-class Serializer
+typedef struct 
 {
-private:
-	
-public:
-	Serializer();
-	Serializer(const Serializer & Sr);
-	Serializer & operator =(const Serializer & sr);
-	virtual ~Serializer()= 0;
-	static uintptr_t serialize(Data* ptr);
-	static Data* deserialize(uintptr_t raw);
-	
-};
-
-
-
-
+	int a;
+	float b;
+	std::string c;
+} Data;
 #endif
