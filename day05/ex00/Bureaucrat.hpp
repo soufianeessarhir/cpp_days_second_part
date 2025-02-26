@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:41:17 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/18 16:43:04 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/19 09:06:18 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,17 @@ public:
 	Bureaucrat  operator++(int);
 	Bureaucrat & operator--();
 	Bureaucrat  operator--(int);
+	class  GradeTooHighException: public std::runtime_error
+	{
+		public:
+		GradeTooHighException();
+	};
+	class GradeTooLowException: public std::runtime_error
+	{
+		public:
+		GradeTooLowException();
+	};
 };
 
-
+std::ostream &operator<<(std::ostream &os, Bureaucrat &br);
 #endif

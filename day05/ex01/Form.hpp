@@ -6,12 +6,14 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 20:39:42 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/19 12:34:22 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/22 15:23:52 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
+#ifndef FORM_HPP
+#define FORM_HPP
 #include <iostream>
-
 #include "Bureaucrat.hpp"
 
 class Form
@@ -35,4 +37,5 @@ public:
 };
 
 std::ostream & operator<<(std::ostream &os, Form &fr);
+#endif
 

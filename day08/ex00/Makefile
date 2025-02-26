@@ -9,12 +9,12 @@ WHITE   = \033[37;1m
 RESET   = \033[0m
 
 # Program name and compiler
-NAME        =ex00
+NAME        =ex02
 CC          = c++
-CPPFLAGS    = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS    = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
 # Source files
-SRC         =  main.cpp  Serializer.cpp
+SRC         =  main.cpp 
 
 # Object files
 OBJ         = $(SRC:.cpp=.o)
