@@ -9,12 +9,12 @@ WHITE   = \033[37;1m
 RESET   = \033[0m
 
 
-NAME        =ex02
+NAME        =ex01
 CC          = c++
 CPPFLAGS    = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
 
-SRC         =  main.cpp 
+SRC         =  main.cpp Span.cpp
 
 
 OBJ         = $(SRC:.cpp=.o)
