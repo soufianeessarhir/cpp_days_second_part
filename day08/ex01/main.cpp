@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:17:07 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/27 17:55:59 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/27 18:17:38 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 int main() 
 { 
-	// subject test
 	Span sp = Span(5);
 	sp.addNumber(6);
 	sp.addNumber(3);
 	sp.addNumber(17);
 	sp.addNumber(9);
 	sp.addNumber(11);
-	//my tests
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
     try {
@@ -47,7 +45,7 @@ int main()
     } catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
-	Span span1(5);
+	Span span1(3);
     std::vector<int> numbers1 = {1, 2, 3};
     span1.addNumber(numbers1.begin(), numbers1.end());
 	std::cout<<span1.longestSpan()<<"\n";

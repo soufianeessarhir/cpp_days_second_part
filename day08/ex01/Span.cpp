@@ -6,13 +6,13 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:17:02 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/27 18:00:37 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/27 18:18:09 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span():size(0),capacity(0)
+Span::Span()
 {
 	
 }
@@ -53,13 +53,14 @@ void Span::addNumber(unsigned int num)
 unsigned int Span::shortestSpan(void)
 {
 	if (size <= 1)
-		throw std::runtime_error("not enough numbers to calculate the shortestspan");	
+		throw std::runtime_error("not enough numbers to calculate the shortestspan");
+	std::sort(vect.begin(),vect.end());
 	int distance;
-	distance = vect[1] - vect[0];
-	for (size_t i = 1; i < size; i++)
+	distance = *(vect.begin() + 1) - *(vect.begin());
+	for (std::vector<int>::iterator it = vect.begin() + 1;it != vect.end(); ++it)
 	{
-		if (vect[i] - vect[i - 1] < distance)
-			distance = vect[i] - vect[i - 1];
+		if (*it - *(it - 1) < distance)
+			distance = *it - *(it - 1);
 	}
 	return distance;
 }
@@ -67,11 +68,9 @@ unsigned int Span::shortestSpan(void)
 unsigned int Span::longestSpan(void)
 {
 	if (size <= 1)
-		throw std::runtime_error("not enough numbers to calculate the longest span");
-	
-	std::vector<int> tmp(vect.begin(), vect.begin() + size);
-	std::sort(tmp.begin(), tmp.end());
-	return tmp.back() - tmp.front();
+		throw std::runtime_error("not enough numbers to calculate the longestspan");
+	std::sort(vect.begin(),vect.end());
+	return (*(vect.rbegin()) - *(vect.begin()));
 }
 
 void Span::addNumber(std::vector<int>::iterator first, std::vector<int>::iterator last)
@@ -85,5 +84,4 @@ void Span::addNumber(std::vector<int>::iterator first, std::vector<int>::iterato
 		vect[i] = *first;
 		size++;
 	}
-	std::cout<<std::endl;
 }
