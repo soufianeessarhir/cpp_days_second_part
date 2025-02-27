@@ -6,15 +6,15 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:17:07 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/26 16:59:51 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/27 17:55:59 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
 int main() 
-{
-	//subject test
+{ 
+	// subject test
 	Span sp = Span(5);
 	sp.addNumber(6);
 	sp.addNumber(3);
@@ -47,6 +47,10 @@ int main()
     } catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
-
+	Span span1(5);
+    std::vector<int> numbers1 = {1, 2, 3};
+    span1.addNumber(numbers1.begin(), numbers1.end());
+	std::cout<<span1.longestSpan()<<"\n";
+	std::cout<<span1.shortestSpan()<<"\n";
     return 0;
 }

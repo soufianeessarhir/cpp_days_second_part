@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:16:57 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/26 16:21:03 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:33:18 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ public:
 	Span& operator=(const Span& oth);
 	~Span();
 	void addNumber(unsigned int num);
+	void addNumber(std::vector<int>::iterator first, std::vector<int>::iterator);
 	unsigned int shortestSpan(void);
 	unsigned int longestSpan(void);
 };

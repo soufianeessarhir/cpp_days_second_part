@@ -11,7 +11,7 @@ RESET   = \033[0m
 
 NAME        =ex01
 CC          = c++
-CPPFLAGS    = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
+CPPFLAGS    = -Wall -Wextra -Werror #-std=c++98 #-fsanitize=address
 
 
 SRC         =  main.cpp Span.cpp
