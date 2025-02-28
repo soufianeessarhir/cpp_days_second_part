@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MutantStack.tpp                                    :+:      :+:    :+:   */
+/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 15:27:53 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/27 16:10:23 by sessarhi         ###   ########.fr       */
+/*   Created: 2025/02/28 15:35:26 by sessarhi          #+#    #+#             */
+/*   Updated: 2025/02/28 15:36:49 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stack>
-#include <deque>
-template <typename T>
-class MutantStack : public std::stack<T>
-{
-	
-	public:
-	typedef typename std::stack<T>::container_type::iterator iterator;
-	iterator begin()
-	{
-		return this->c.begin();
-	}
-	iterator end()
-	{
-		return this->c.end();
-	}
-};
+
+#pragma once
+#ifndef BITCOINEXCHANGE_HPP
+#define BITCOINEXCHANGE_HPP
+#include <iostream>
+
+
+
+#endif

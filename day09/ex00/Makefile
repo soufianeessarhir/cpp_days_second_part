@@ -9,12 +9,12 @@ WHITE   = \033[37;1m
 RESET   = \033[0m
 
 
-NAME        = btc
+NAME        = ex02
 CC          = c++
 CPPFLAGS    = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
 
-SRC         =  main.cpp
+SRC         =  main.cpp BitcoinExchange.cpp
 
 
 OBJ         = $(SRC:.cpp=.o)

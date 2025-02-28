@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:17:07 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/02/27 18:17:38 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:14:58 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int main()
     } catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
-	Span span1(3);
+	Span span1(5);
     std::vector<int> numbers1 = {1, 2, 3};
     span1.addNumber(numbers1.begin(), numbers1.end());
 	std::cout<<span1.longestSpan()<<"\n";
