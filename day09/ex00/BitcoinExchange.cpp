@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:36:24 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/03/02 14:31:31 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/03/02 17:14:23 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,16 @@ BitcoinExchange::BitcoinExchange()
 {
 	std::ifstream  file("data.csv");
 	std::string tmp;
-	int year,month,day;
-	char dash,dash1,comma;
 	double value;
 	uint_64 key;
 	if(file.is_open())
 	{
+		getline(file,tmp);
 		while(getline(file,tmp))
 		{
 			std::stringstream os(tmp);
+			int year,month,day;
+			char dash,dash1,comma;
 			os>>year>>dash>>month>>dash1>>day>>comma>>value;
 			key = year * 10000 + month * 100 + day;
 			data[key] = value;
@@ -73,29 +74,26 @@ void BitcoinExchange::processipute(std::string FileName)
 			std::stringstream os(tmp);
 			if (parsedate(tmp) == false)
 				continue;
-		 	else if (os>>year>>dash>>month>>dash1>>day>>del>>strval)
+		 	else if (os>>year>>dash>>month>>dash1>>day>>del>>strval && dash == '-' && dash1 == '-' && del == '|')
 			{
-				if (dash == '-' && dash1 == '-' && del == '|')
-				{
-					errno = 0;
-					char *end = NULL;
-					value = strtod(strval.c_str(),&end);
-					if (*end || std::isinf(value) || std::isnan(value))
-						std::cout << "Error: bad input => 2001-42-42\n";
-					else if (errno || value > 1000)
-						std::cerr<<"Error: too large number\n";
-					else if (value < 0)
-						std::cout << "Error: not a positive number.\n";
-					else
-					{
-						key = year * 10000 + month * 100 + day;
-						std::map<uint_64, double>::iterator it = data.lower_bound(key);
-						if (it != data.end())
-							std::cout<<tmp.substr(0,tmp.find(' ')) + " => "<< value << " = " <<it->second * value << std::endl;
-					}
-				}
+				errno = 0;
+				char *end = NULL;
+				value = strtod(strval.c_str(),&end);
+				if ((*end && *strval.rbegin() != 'f' && *strval.rbegin() != 'F' ) || std::isinf(value) || std::isnan(value))
+					std::cout << "Error: bad input\n";
+				else if (errno || value > 1000)
+					std::cerr<<"Error: too large number\n";
+				else if (value < 0)
+					std::cout << "Error: not a positive number.\n";
 				else
-					std::cout << "Error: bad input => 2001-42-42\n";
+				{
+					key = static_cast<uint_64>(year * 10000 + month * 100 + day);
+					std::map<uint_64, double>::iterator it = data.lower_bound(key);
+					if (it != data.begin() && (it == data.end() || it->first != key))
+						--it;
+					if (it != data.end())
+						std::cout<<tmp.substr(0,tmp.find(' ')) + " => "<< value << " = " <<it->second * value << std::endl;
+				}
 			}
 			else
 				std::cout << "Error: bad input => 2001-42-42\n";
