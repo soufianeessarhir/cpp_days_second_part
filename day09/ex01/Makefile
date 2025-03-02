@@ -29,7 +29,7 @@ all: banner $(NAME)
 banner:
 	@echo "$(MAGENTA)"
 	@echo "╔══════════════════════════════════════╗"
-	@echo "║            Bureaucrat               ║"
+	@echo "║               sessarhi               ║"
 	@echo "╚══════════════════════════════════════╝$(RESET)"
 
 $(NAME): $(OBJ)
