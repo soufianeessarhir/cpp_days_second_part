@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:35:26 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/03/02 10:34:44 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/03/02 12:11:34 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ public:
 	BitcoinExchange(const BitcoinExchange&);
 	BitcoinExchange & operator=(const BitcoinExchange&);
 	void processipute(std::string FileName);
+	bool parsedate(std::string token);
 };
 
 
