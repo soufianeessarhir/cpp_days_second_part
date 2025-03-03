@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 19:45:35 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/03/02 22:46:31 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/03/03 10:25:42 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,9 @@ void RPN::rpn(std::string expression)
 			
 		}
 	}
+	if (st.size() == 1)
+		std::cout<<st.top()<< std::endl;
+	else
+		std::cout<< "error\n";
 	
 }
