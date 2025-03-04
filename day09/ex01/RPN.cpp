@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 19:45:35 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/03/03 10:25:42 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/03/03 10:34:27 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@ RPN::RPN()
 
 RPN::~RPN()
 {
+}
+RPN::RPN(const RPN & rhs)
+{
+	(void)rhs;
+}
+RPN & RPN::operator=(const RPN & rhs)
+{
+	(void)rhs;
+	return *this;
 }
 void RPN::execute(std::stack<int> &st, std::string &_operator)
 {
