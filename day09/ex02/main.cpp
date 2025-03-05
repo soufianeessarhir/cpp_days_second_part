@@ -6,7 +6,7 @@
 /*   By: sessarhi <sessarhi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:15:43 by sessarhi          #+#    #+#             */
-/*   Updated: 2025/03/04 14:46:49 by sessarhi         ###   ########.fr       */
+/*   Updated: 2025/03/04 19:30:01 by sessarhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 
 int main(int ac , char **av)
 {
-	PmergeMe(av,ac -1);
+	PmergeMe(av,ac);
 }
