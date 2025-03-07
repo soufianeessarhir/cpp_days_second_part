@@ -32,7 +32,7 @@ public:
 	~PmergeMe();
 	void sort();
 	void dequeMergeInertionSort(std::deque<int>& deq);
-	void vectorMergeInertionSort(std::vector<int> deq);
+	void vectorMergeInertionSort(std::vector<int>& vec);
 	template <typename T>
 	size_t binarySearch(T &container, int value)
 	{

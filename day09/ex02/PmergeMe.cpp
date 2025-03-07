@@ -96,58 +96,58 @@ void PmergeMe::dequeMergeInertionSort(std::deque<int>& deq) {
     }
     deq = largeelements;
 }
-void PmergeMe::vectorMergeInertionSort(std::vector<int> deq)
+void PmergeMe::vectorMergeInertionSort(std::vector<int>& vec)
 {
-	if (deq.size() <= 1)
-		return;
-	std::vector<std::pair<int,int> > pairs;
-	int leftover = -1;
-	if (deq.size() % 2)
-	{
-		leftover = deq.back();
-		deq.pop_back();
-	}
-	
-	for (size_t i = 0; i < deq.size(); i += 2)
-	{
-		if (deq[i] > deq[i + 1])
-			pairs.push_back(std::make_pair(deq[i + 1],deq[i]));
-		else
-			pairs.push_back(std::make_pair(deq[i],deq[i + 1]));
-	}
-	std::vector<int> largeelements;
-	std::vector<int> smallerelements;
+    if (vec.size() <= 1)
+        return;
+    std::vector<std::pair<int, int> > pairs;
+    int leftover = -1;
+    if (vec.size() % 2) {
+        leftover = vec.back();
+        vec.pop_back();
+    }
 
-	for (size_t i = 0; i < pairs.size(); i++)
-	{
-		largeelements.push_back(pairs[i].second);
-		smallerelements.push_back(pairs[i].first);
-	}
-	
-	vectorMergeInertionSort(largeelements);
-	for(size_t i = 0; i < largeelements.size(); i++)
-	{
-		for(size_t j = 0; i < pairs.size(); j++)
-		{
-			if (largeelements[i] == pairs[j].second)
-				smallerelements.push_back(pairs[j].first);
-		}
-	}
-	largeelements.insert(smallerelements.begin(),*smallerelements.begin());
-	smallerelements.begin()++;
-	for (size_t i = 1; i < smallerelements.size(); i++)
-	{
-		size_t start = Jseq[i];
-		size_t end = Jseq[i + 1];
-		for (size_t j = end ; j > start; j--)
-		{
-			if (j - 1 < smallerelements.size())
-				largeelements.insert(std::lower_bound(largeelements.begin(),largeelements.end(),smallerelements[j - 1]),smallerelements[j - 1]);
-		}
-	}
-	if (leftover != -1)
-		largeelements.insert(std::lower_bound(largeelements.begin(),largeelements.end(),leftover),leftover);
-	vc = largeelements;
+    for (size_t i = 0; i < vec.size(); i += 2) {
+        if (vec[i] > vec[i + 1])
+            pairs.push_back(std::make_pair(vec[i + 1], vec[i]));
+        else
+            pairs.push_back(std::make_pair(vec[i], vec[i + 1]));
+    }
+    std::vector<int> largeelements;
+    for (size_t i = 0; i < pairs.size(); i++) {
+        largeelements.push_back(pairs[i].second);
+    }
+    vectorMergeInertionSort(largeelements);
+    std::vector<int> smallerelements;
+    for (size_t i = 0; i < largeelements.size(); i++) {
+        for (size_t j = 0; j < pairs.size(); j++) {
+            if (largeelements[i] == pairs[j].second) {
+                smallerelements.push_back(pairs[j].first);
+                break;
+            }
+        }
+    }
+    if (!smallerelements.empty()) {
+        largeelements.insert(largeelements.begin(), smallerelements[0]);
+        smallerelements.erase(smallerelements.begin()); 
+    }
+    for (size_t i = 1; i < Jseq.size() - 1; i++) {
+        size_t start = Jseq[i - 1];
+        size_t end = Jseq[i];
+        for (size_t j = end; j > start; j--) {
+            if (j - 1 < smallerelements.size()) {
+                int element = smallerelements[j - 1];
+                std::vector<int>::iterator insertPos = std::lower_bound(largeelements.begin(), largeelements.end(), element);
+                largeelements.insert(insertPos, element);
+            }
+        }
+    }
+
+    if (leftover != -1) {
+        std::vector<int>::iterator insertPos = std::lower_bound(largeelements.begin(), largeelements.end(), leftover);
+        largeelements.insert(insertPos, leftover);
+    }
+    vec = largeelements;
 }
 
 void PmergeMe::jacobsthalsequence(int len)
@@ -164,8 +164,8 @@ void PmergeMe::sort()
 	for (size_t i = 0; i < dq.size(); i++)
 		std::cout<<dq[i]<<" ";
 	std::cout<<std::endl;
-	// vectorMergeInertionSort(vc);
-	// for (size_t i = 0; i < vc.size(); i++)
-	// 	std::cout<<vc[i]<<" ";
-	// std::cout<<std::endl;
+	vectorMergeInertionSort(vc);
+	for (size_t i = 0; i < vc.size(); i++)
+		std::cout<<vc[i]<<" ";
+	std::cout<<std::endl;
 }
