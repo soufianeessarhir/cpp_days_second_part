@@ -23,14 +23,35 @@ class PmergeMe
 private:
 	std::vector<int> vc;
 	std::deque<int> dq;
+	std::vector<size_t> Jseq;
 public:
 	PmergeMe();
 	PmergeMe(char**,int);
 	PmergeMe(const PmergeMe &);
 	PmergeMe & operator=(const PmergeMe &);
 	~PmergeMe();
-	void dequeMergeInertionSort(std::deque<int> deq);
+	void sort();
+	void dequeMergeInertionSort(std::deque<int>& deq);
 	void vectorMergeInertionSort(std::vector<int> deq);
+	template <typename T>
+	size_t binarySearch(T &container, int value)
+	{
+		size_t left = 0;
+		size_t right = container.size();
+		size_t mid;
+		while (left < right)
+		{
+			mid = left + (right - left) / 2;
+			if (container[mid] == value)
+				return mid;
+			else if (container[mid] < value)
+				left = mid + 1;
+			else
+				right = mid;
+		}
+		return left;
+	}
+	void jacobsthalsequence(int len);
 };
 
 #endif

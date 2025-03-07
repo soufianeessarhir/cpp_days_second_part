@@ -11,7 +11,7 @@ RESET   = \033[0m
 
 NAME        = PmergeMe
 CC          = c++
-CPPFLAGS    = -Wall -Wextra -Werror -std=c++98 
+CPPFLAGS    = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 
 
 SRC         =  main.cpp PmergeMe.cpp

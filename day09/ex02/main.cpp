@@ -15,5 +15,13 @@
 
 int main(int ac , char **av)
 {
-	PmergeMe(av,ac);
+	if (ac < 2)
+	{
+		std::cout<<"Usage: ./PmergeMe [numbers]\n";
+		return 1;
+	}
+	PmergeMe mr(av,ac);
+	mr.sort();
+	return 0;
+
 }
