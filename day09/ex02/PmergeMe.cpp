@@ -59,8 +59,6 @@ void PmergeMe::jacobsthalsequence(size_t len)
 }
 
 
-
-
 void PmergeMe::sort()
 {
 	MergeInertionSort(dq);

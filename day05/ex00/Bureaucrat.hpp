@@ -32,17 +32,23 @@ public:
 	Bureaucrat  operator++(int);
 	Bureaucrat & operator--();
 	Bureaucrat  operator--(int);
-	class  GradeTooHighException: public std::runtime_error
+	class  GradeTooHighException: public std::exception
 	{
+		private:
+	    	std::string _msg;
 		public:
-		GradeTooHighException();
-		const char *what() const throw();
+			GradeTooHighException(std::string const &msg);
+			virtual ~GradeTooHighException() throw();
+			virtual const char *what() const throw();
 	};
-	class GradeTooLowException: public std::runtime_error
+	class GradeTooLowException: public std::exception
 	{
+		private:
+	    	std::string _msg;
 		public:
-		GradeTooLowException();
-		const char *what() const throw();
+		GradeTooLowException(std::string const &msg);
+		virtual ~GradeTooLowException() throw();
+		virtual const char *what() const throw();
 	};
 };
 

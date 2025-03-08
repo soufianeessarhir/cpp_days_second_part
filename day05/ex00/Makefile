@@ -1,4 +1,4 @@
-NAME =account
+NAME =ex00
 
 SOURCES = Bureaucrat.cpp main.cpp
 
