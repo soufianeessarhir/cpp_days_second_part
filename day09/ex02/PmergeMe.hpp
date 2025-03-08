@@ -31,27 +31,9 @@ public:
 	PmergeMe & operator=(const PmergeMe &);
 	~PmergeMe();
 	void sort();
-	void dequeMergeInertionSort(std::deque<int>& deq);
+	std::deque<int>& dequeMergeInertionSort(std::deque<int>& deq);
 	void vectorMergeInertionSort(std::vector<int>& vec);
-	template <typename T>
-	size_t binarySearch(T &container, int value)
-	{
-		size_t left = 0;
-		size_t right = container.size();
-		size_t mid;
-		while (left < right)
-		{
-			mid = left + (right - left) / 2;
-			if (container[mid] == value)
-				return mid;
-			else if (container[mid] < value)
-				left = mid + 1;
-			else
-				right = mid;
-		}
-		return left;
-	}
-	void jacobsthalsequence(int len);
+	void jacobsthalsequence(size_t len);
 };
 
 #endif
