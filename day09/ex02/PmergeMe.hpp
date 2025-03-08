@@ -20,6 +20,7 @@
 #include <errno.h>
 #include <cstring>
 #include <cstdlib>
+#include <climits>
 class PmergeMe
 {
 private:

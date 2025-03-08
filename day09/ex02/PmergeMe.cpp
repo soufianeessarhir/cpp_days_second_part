@@ -27,8 +27,10 @@ PmergeMe::PmergeMe(char** arg,int size)
 	{
 		errno = 0;
 		value = strtol(arg[i], &end,10);
-		if (errno || *end || value < 0)
+		if (errno != 0 || *end || value > INT_MAX || value < 0)
 			std::cout<<"invalid number\n",exit(1);
+		if(std::find(vc.begin(), vc.end(), value) != vc.end())
+			std::cout<<"duplicate number\n",exit(1);
 		vc.push_back(value);
 		dq.push_back(value);
 	}
