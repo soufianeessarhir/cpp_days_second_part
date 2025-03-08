@@ -13,6 +13,8 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 #include <iostream>
+#include <algorithm>
+#include <utility>
 #include <vector>
 #include <deque>
 #include <errno.h>
@@ -31,8 +33,62 @@ public:
 	PmergeMe & operator=(const PmergeMe &);
 	~PmergeMe();
 	void sort();
-	std::deque<int>& dequeMergeInertionSort(std::deque<int>& deq);
-	void vectorMergeInertionSort(std::vector<int>& vec);
+	template <typename T>
+	T& MergeInertionSort(T& container) 
+	{
+		if (container.size() <= 1)
+		{
+			return container;
+		}
+		T a_values;
+		T map(*std::max_element(container.begin(), container.end()) + 1);
+		int leftover = -1;
+		if (container.size() % 2)
+		{
+			leftover = container.back();
+			container.pop_back();
+		}
+		for (size_t i = 0; i < container.size(); i += 2)
+		{
+			int a = std::max(container[i], container[i+1]);
+			int b = std::min(container[i], container[i+1]);
+			a_values.push_back(a);
+			map[a] = b;
+		}
+		a_values = MergeInertionSort(a_values);
+		T b_values = a_values;
+		T result;
+		if (!b_values.empty())
+		{
+			result.push_back(map[b_values[0]]);
+		}
+		for (typename T::const_iterator a_it = a_values.begin(); a_it != a_values.end(); ++a_it)
+		{
+			result.push_back(*a_it);
+		}
+		jacobsthalsequence(b_values.size());
+		size_t k = 2;
+		while (k < Jseq.size() && Jseq[k-1] < b_values.size())
+		{
+			size_t m = std::min(Jseq[k], (size_t)b_values.size());
+			for (size_t i = m; i > Jseq[k-1]; i--)
+			{
+				if (i-1 < b_values.size()) {
+					int element = map[b_values[i-1]];
+					typename  T::iterator insertPos = std::lower_bound(result.begin(), result.end(), element);
+					result.insert(insertPos, element);
+				}
+			}
+			k++;
+		}
+		if (leftover != -1) 
+		{
+			typename  T::iterator insertPos = std::lower_bound(result.begin(), result.end(), leftover);
+			result.insert(insertPos, leftover);
+		}
+		container = result;
+		return container;
+	}
 	void jacobsthalsequence(size_t len);
 };
 
