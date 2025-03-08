@@ -10,10 +10,55 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include <iostream>
+#include "ShrubberyCreationForm.hpp"
+#include "Bureaucrat.hpp"
+#include "AForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int main()
 {
-	std::cout<<"hi"<<std::endl;
+	try
+	{
+		AForm* form = new ShrubberyCreationForm("home");
+		Bureaucrat br("br", 1);
+		br.signForm(*form);
+		br.executeForm(*form);
+		form->execute(br);
+		delete form;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	try
+	{
+		AForm* form = new PresidentialPardonForm("home");
+		Bureaucrat br("br", 1);
+		br.signForm(*form);
+		br.executeForm(*form);
+		form->execute(br);
+		delete form;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	try
+	{
+		AForm* form = new RobotomyRequestForm("home");
+		Bureaucrat br("br", 1);
+		br.signForm(*form);
+		br.executeForm(*form);
+		form->execute(br);
+		delete form;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	return 0;
+	
 }

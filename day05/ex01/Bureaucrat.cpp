@@ -14,20 +14,23 @@
 #include "Form.hpp"
 
 
-Bureaucrat::Bureaucrat():_name("default"),_grade(0){}
-Bureaucrat::Bureaucrat(const Bureaucrat& br){*this = br;}
+Bureaucrat::Bureaucrat():_name("default"),_grade(150){}
+
+Bureaucrat::Bureaucrat(const Bureaucrat& br):_name(br._name),_grade(br._grade){}
+
 Bureaucrat::~Bureaucrat(){}
+
 Bureaucrat&  Bureaucrat::operator=(const Bureaucrat& br)
 {
 	if(this == &br)
-	return *this;
+		return *this;
 	_grade = br._grade;
 	return *this;
 }
 Bureaucrat::Bureaucrat(const std::string name , int grade):_name(name)
 {
 	if (grade > 150)
-	throw Bureaucrat::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 	_grade = grade;
@@ -65,15 +68,28 @@ Bureaucrat& Bureaucrat::operator++()
 }
 
 std::string Bureaucrat::getname(void)const{return _name;}
+
 int Bureaucrat::getgrade(void)const{return this->_grade;}
 
 Bureaucrat::GradeTooHighException::GradeTooHighException() : std::runtime_error("grade is too hight"){}
+
 Bureaucrat::GradeTooLowException::GradeTooLowException() : std::runtime_error("grade  is too low"){}
+
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "grade is too hight";
+}
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "grade  is too low";
+}
+
 std::ostream &operator<<(std::ostream &os, Bureaucrat &br)
 {
 	os <<br.getname()<<" >, bureaucrat grade " <<" "<<br.getgrade()<<".";
 	return os;
 }
+
 void Bureaucrat::signForm(Form &fr)
 {
 	if (fr.getIsSigned() == true)

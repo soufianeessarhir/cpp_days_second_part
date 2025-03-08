@@ -40,11 +40,13 @@ public:
 	{
 		public:
 		GradeTooHighException();
+		const char *what() const throw();
 	};
 	class GradeTooLowException: public std::runtime_error
 	{
 		public:
 		GradeTooLowException();
+		const char *what() const throw();
 	};
 };
 std::ostream &operator<<(std::ostream &os, Bureaucrat &br);

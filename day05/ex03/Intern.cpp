@@ -39,8 +39,14 @@ AForm* Intern::makeForm(std::string name, std::string target)
 	{
 		if(name == names[i])
 		{
-			//add try-catch here
-			form = creatform[i](target);
+			try
+			{
+				form = creatform[i](target);
+			}
+			catch(const std::bad_alloc& e)
+			{
+				std::cerr << e.what() << '\n';
+			}
 			std::cout << "Intern creates " << name <<std::endl;
 			return form;
 		}
