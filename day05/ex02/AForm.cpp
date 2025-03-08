@@ -74,7 +74,7 @@ void AForm::execute(Bureaucrat const & executor)const
 	if (this->getIsSigned() == true)
 	{
 		if (this->getToExecuteGrade() < executor.getgrade())
-			Bureaucrat::GradeTooLowException();
+			throw Bureaucrat::GradeTooLowException("Grade too low");
 		this->action();
 	}
 }
