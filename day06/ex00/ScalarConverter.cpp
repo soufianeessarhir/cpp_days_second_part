@@ -98,7 +98,7 @@ void ScalarConverter::convert(std::string val)
 			std::cout<<"char: Non displayable\n";
 		std::cout<<"int: " <<static_cast <int>(val[0])<< std::endl;
 		std::cout<<"float: " <<static_cast <float>(val[0])<<  ".0f\n";
-		std::cout<<"double: " <<static_cast <double>(val[0])<< std::endl;
+		std::cout<<"double: " <<static_cast <double>(val[0])<<".0\n";
 	}
 	else if (IsInt(val))
 	{
@@ -119,7 +119,7 @@ void ScalarConverter::convert(std::string val)
 			std::cout<<"char: Non displayable\n";
 		std::cout<<"int: " <<static_cast <int>(var)<< std::endl;
 		std::cout<<"float: " <<static_cast <float>(var)<< ".0f\n";
-		std::cout<<"double: " <<static_cast <double>(var)<< std::endl;
+		std::cout<<"double: " <<static_cast <double>(var)<< ".0\n";
 	}
 	else if (IsFloat(val))
 	{
@@ -139,9 +139,9 @@ void ScalarConverter::convert(std::string val)
 				std::cout<<"char: Non displayable\n";
 		}
 		std::cout<<"int: " <<static_cast <int>(num)<< std::endl;
-		std::cout<<"float: " <<static_cast <float>(num)<<"f\n";
-		std::cout<<"double: " <<static_cast <double>(num)<< std::endl;
-	}
+		std::cout<<"float: " <<static_cast <float>(num)<<".0f\n";
+		std::cout<<"double: " <<static_cast <double>(num)<< ".0\n";
+	}	
 	else if(IsDouble(val))
 	{
 		
