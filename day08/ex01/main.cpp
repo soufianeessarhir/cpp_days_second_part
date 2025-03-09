@@ -46,7 +46,10 @@ int main()
         std::cerr << "Exception: " << e.what() << std::endl;
     }
 	Span span1(5);
-    std::vector<int> numbers1 = {1, 2, 3};
+    std::vector<int> numbers1;
+	numbers1.push_back(1);
+	numbers1.push_back(2);
+	numbers1.push_back(3);
     span1.addNumber(numbers1.begin(), numbers1.end());
 	std::cout<<span1.longestSpan()<<"\n";
 	std::cout<<span1.shortestSpan()<<"\n";
