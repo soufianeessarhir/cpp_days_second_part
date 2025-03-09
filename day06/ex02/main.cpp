@@ -12,7 +12,8 @@
 
 #include "Base.hpp"
 #include "Classes.hpp"
-//need to check invalid casting here (sessarhi)
+
+
 int main()
 {
 	Base *base;
@@ -20,6 +21,11 @@ int main()
 	base = generate();
 	identify(base);
 	identify(*base);
+
+	Base *base2 = new Base;
+	identify(base2);
+	identify(*base2);
+	delete base2;
 	delete base;
 	
 } 

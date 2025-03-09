@@ -22,6 +22,5 @@ int main()
 	data.c = "hello world";
 	Data *ptr = Serializer::deserialize(Serializer::serialize(&data));
 	std::cout<< ptr << "    " << &data <<std::endl;
-	
 	std::cout<<data.a<< " " << data.b << " "<< data.c <<std::endl;
 }
