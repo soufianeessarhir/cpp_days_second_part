@@ -89,24 +89,34 @@ bool ScalarConverter::IsDouble(std::string val)
 	return !val.empty();
 }
 
+std::string ScalarConverter::toString(float val)
+{
+	std::stringstream ss;
+	ss << val;
+	std::string str = ss.str();
+	if (str.find('.') == std::string::npos)
+		str += ".0";
+	str += "f";
+	return str;
+}
+std::string ScalarConverter::toString(double val)
+{
+	std::stringstream ss;
+	ss << val;
+	std::string str = ss.str();
+	if (str.find('.') == std::string::npos)
+		str += ".0";
+	return str;
+}
+
 void ScalarConverter::convert(std::string val)
 {
-	if(val.length() == 1)
-	{
-		if (isprint(val[0]))
-			std::cout<<"char: " <<static_cast<char>(val[0])<< std::endl;
-		else
-			std::cout<<"char: Non displayable\n";
-		std::cout<<"int: " <<static_cast <int>(val[0])<< std::endl;
-		std::cout<<"float: " <<static_cast <float>(val[0])<<  ".0f\n";
-		std::cout<<"double: " <<static_cast <double>(val[0])<<".0\n";
-	}
-	else if (IsInt(val))
+	if (IsInt(val))
 	{
 		errno = 0;
 		char *invalid;
 		long var = strtol(val.c_str(),&invalid,10);
-		if (errno == ERANGE ||  var > INT_MAX || var < INT_MIN || *invalid != '\0')
+		if (errno == ERANGE ||  var > INT_MAX || var < INT_MIN)
 		{
 			std::cout << "char: impossible\n";
 			std::cout << "int: impossible\n";
@@ -117,22 +127,33 @@ void ScalarConverter::convert(std::string val)
 		if (var >= 0 && var <= 127 )
 		{
 			if (isprint(static_cast<char>(var)))
-				std::cout<<"char: " <<static_cast <char>(var)<< std::endl;
+				std::cout<<"char: \'" <<static_cast <char>(var)<<"\'"<< std::endl;
 			else
 				std::cout<<"char: Non displayable\n";
 		}
 		else
 			std::cout<<"char: impossible\n";
 		std::cout<<"int: " <<static_cast <int>(var)<< std::endl;
-		std::cout<<"float: " <<static_cast <float>(var)<< ".0f\n";
-		std::cout<<"double: " <<static_cast <double>(var)<< ".0\n";
+		std::cout<<"float: " << toString(static_cast <float>(var))<< std::endl;
+		std::cout<<"double: " << toString(static_cast <double>(var))<< std::endl;
 	}
+	else if(val.length() == 1)
+	{
+		if (isprint(val[0]))
+			std::cout<<"char: \'" <<static_cast<char>(val[0]) << "\'"<< std::endl;
+		else
+			std::cout<<"char: Non displayable\n";
+		std::cout<<"int: " <<static_cast <int>(val[0])<< std::endl;
+		std::cout<<"float: " << toString(static_cast <float>(val[0]))<< std::endl;
+		std::cout<<"double: " << toString(static_cast <double>(val[0]))<< std::endl;
+	}
+	 
 	else if (IsFloat(val))
 	{
 		char *invalid;
 		errno = 0;
 		float num = strtof(val.c_str(),&invalid);
-		if (errno == ERANGE || *invalid != '\0')
+		if (errno == ERANGE)
 		{
 			std::cout << "char: impossible\n";
 			std::cout << "int: impossible\n";
@@ -149,20 +170,20 @@ void ScalarConverter::convert(std::string val)
 		{
 			int toint = num;
 			if (toint >= 0 && toint <= 127 && isprint(static_cast<char>(toint)))
-				std::cout<<"char: " <<static_cast <char>(toint)<< std::endl;
+				std::cout<<"char: \'" <<static_cast <char>(toint)<<"\'"<< std::endl;
 			else
 				std::cout<<"char: Non displayable\n";
 		}
 		std::cout<<"int: " <<static_cast <int>(num)<< std::endl;
-		std::cout<<"float: " <<static_cast <float>(num)<<".0f\n";
-		std::cout<<"double: " <<static_cast <double>(num)<< ".0\n";
+		std::cout<<"float: " <<toString(num)<< std::endl;
+		std::cout<<"double: " <<toString(static_cast <double>(num))<< std::endl;
 	}	
 	else if(IsDouble(val))
 	{
 		char *invalid;
 		errno = 0;
 		double num = strtod(val.c_str(), &invalid);
-		if (errno == ERANGE || *invalid != '\0')
+		if (errno == ERANGE)
 		{
 			std::cout << "char: impossible\n";
 			std::cout << "int: impossible\n";
@@ -181,7 +202,7 @@ void ScalarConverter::convert(std::string val)
 			if (toint >= 0 && toint <= 127)
 			{
 				if (isprint(static_cast<char>(toint)))
-					std::cout<<"char: " <<static_cast <char>(toint)<< std::endl;
+					std::cout<<"char: \'" <<static_cast <char>(toint)<<"\'"<< std::endl;
 				else
 					std::cout<<"char: Non displayable\n";
 			}
@@ -196,10 +217,10 @@ void ScalarConverter::convert(std::string val)
 			std::cout<<"int: impossible\n";
 		}
 		if (num <= FLT_MAX && num >= -FLT_MAX)
-			std::cout<<"float: " <<static_cast <float>(num)<<".0f\n";
+			std::cout<<"float: " <<toString(static_cast <float>(num))<< std::endl;
 		else
 			std::cout<<"float: impossible\n";
-		std::cout<<"double: " <<static_cast <double>(num)<< std::endl;
+		std::cout<<"double: " <<toString(num)<< std::endl;
 	}
 	else if (val == "-inf" || val == "inf" || val == "+inf" || val == "nan")
 	{

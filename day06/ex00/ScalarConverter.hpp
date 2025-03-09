@@ -17,6 +17,7 @@
 #include <cerrno>  
 #include <climits> 
 #include <cmath>
+#include <sstream>
 
 class ScalarConverter
 {
@@ -30,6 +31,8 @@ public:
 	ScalarConverter & operator=(const ScalarConverter& scal);
 	virtual ~ScalarConverter() = 0;
 	static void convert(std::string val);
+	static std::string toString(float val);
+	static std::string toString(double val);
 };
 
 #endif
