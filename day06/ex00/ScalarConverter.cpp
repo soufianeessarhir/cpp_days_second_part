@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <cfloat>
 
 ScalarConverter::ScalarConverter()
 {
@@ -113,18 +114,32 @@ void ScalarConverter::convert(std::string val)
 			std::cout << "double: impossible\n";
 			return ;
 		}
-		if (var >= 0 && var <= 127 && isprint(static_cast<char>(var)))
-			std::cout<<"char: " <<static_cast <char>(var)<< std::endl;
+		if (var >= 0 && var <= 127 )
+		{
+			if (isprint(static_cast<char>(var)))
+				std::cout<<"char: " <<static_cast <char>(var)<< std::endl;
+			else
+				std::cout<<"char: Non displayable\n";
+		}
 		else
-			std::cout<<"char: Non displayable\n";
+			std::cout<<"char: impossible\n";
 		std::cout<<"int: " <<static_cast <int>(var)<< std::endl;
 		std::cout<<"float: " <<static_cast <float>(var)<< ".0f\n";
 		std::cout<<"double: " <<static_cast <double>(var)<< ".0\n";
 	}
 	else if (IsFloat(val))
 	{
-		
-		float num = atof(val.c_str());
+		char *invalid;
+		errno = 0;
+		float num = strtof(val.c_str(),&invalid);
+		if (errno == ERANGE || *invalid != '\0')
+		{
+			std::cout << "char: impossible\n";
+			std::cout << "int: impossible\n";
+			std::cout << "float: impossible\n";
+			std::cout << "double: impossible\n";
+			return ;
+		}
 		if (std::isinf(num) || std::isnan(num))
 		{
 			std::cout << "char: impossible\n";
@@ -144,23 +159,46 @@ void ScalarConverter::convert(std::string val)
 	}	
 	else if(IsDouble(val))
 	{
-		
-		double num = strtod(val.c_str(), NULL);
+		char *invalid;
+		errno = 0;
+		double num = strtod(val.c_str(), &invalid);
+		if (errno == ERANGE || *invalid != '\0')
+		{
+			std::cout << "char: impossible\n";
+			std::cout << "int: impossible\n";
+			std::cout << "float: impossible\n";
+			std::cout << "double: impossible\n";
+			return ;
+		}
 		if (std::isinf(num) || std::isnan(num))
 		{
 			std::cout << "char: impossible\n";
 			std::cout << "int: impossible\n";
 		}
-		else 
+		else if (num <= INT_MAX && num >= INT_MIN)
 		{
 			int toint = num;
-			if (toint >= 0 && toint <= 127 && isprint(static_cast<char>(toint)))
-				std::cout<<"char: " <<static_cast <char>(toint)<< std::endl;
+			if (toint >= 0 && toint <= 127)
+			{
+				if (isprint(static_cast<char>(toint)))
+					std::cout<<"char: " <<static_cast <char>(toint)<< std::endl;
+				else
+					std::cout<<"char: Non displayable\n";
+			}
 			else
-				std::cout<<"char: Non displayable\n";
+				std::cout<<"char: impossible\n";
+			
+			std::cout<<"int: " <<static_cast <int>(num)<< std::endl;
 		}
-		std::cout<<"int: " <<static_cast <int>(num)<< std::endl;
-		std::cout<<"float: " <<static_cast <float>(num)<<  "f\n";
+		else
+		{
+			std::cout<<"char: impossible\n";
+			std::cout<<"int: impossible\n";
+		}
+		if (num <= FLT_MAX && num >= -FLT_MAX)
+			std::cout<<"float: " <<static_cast <float>(num)<<".0f\n";
+		else
+			std::cout<<"float: impossible\n";
 		std::cout<<"double: " <<static_cast <double>(num)<< std::endl;
 	}
 	else if (val == "-inf" || val == "inf" || val == "+inf" || val == "nan")
