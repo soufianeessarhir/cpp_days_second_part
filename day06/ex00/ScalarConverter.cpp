@@ -42,28 +42,26 @@ bool ScalarConverter::IsInt(std::string val)
 
 bool ScalarConverter::IsFloat(std::string val)
 {
-	bool point = false;
-	if ((*(val.rbegin()) != 'f' && *(val.rbegin()) != 'F') || val.length() == 1)
-		return false;
-	std::string::iterator it = val.begin();
-	if (*it == '-')
-		it++;
-	if(*it == '.')
-	{
-		point = true;
-		it++;
-	}
-	for(;it != (val.end() - 1);it++)
-	{
-		if (!isdigit(*it))
-		{
-			if (*it == '.' && point == false)
-				point = true;
-			else
-				return false;
-		}
-	}
-	return !val.empty();
+    if (val.empty() || val.length() == 1)
+        return false;
+        
+    if (val[val.length() - 1] != 'f' && val[val.length() - 1] != 'F')
+        return false;
+    std::string numPart = val.substr(0, val.length() - 1);
+    bool hasDigit = false;
+    bool hasDecimal = false;
+    size_t i = 0;
+    if (i < numPart.length() && (numPart[i] == '-' || numPart[i] == '+'))
+        i++;
+    for (; i < numPart.length(); i++) {
+        if (isdigit(numPart[i]))
+            hasDigit = true;
+        else if (numPart[i] == '.' && !hasDecimal)
+            hasDecimal = true;
+        else
+            return false;
+    }
+    return hasDigit;
 }
 bool ScalarConverter::IsDouble(std::string val)
 {
@@ -89,24 +87,24 @@ bool ScalarConverter::IsDouble(std::string val)
 	return !val.empty();
 }
 
-std::string ScalarConverter::toString(float val)
-{
-	std::stringstream ss;
-	ss << val;
-	std::string str = ss.str();
-	if (str.find('.') == std::string::npos)
-		str += ".0";
-	str += "f";
-	return str;
-}
 std::string ScalarConverter::toString(double val)
 {
-	std::stringstream ss;
-	ss << val;
-	std::string str = ss.str();
-	if (str.find('.') == std::string::npos)
-		str += ".0";
-	return str;
+    std::stringstream ss;
+    ss << val;
+    std::string str = ss.str();
+    if (str.find('e') == std::string::npos && str.find('.') == std::string::npos)
+        str += ".0";
+    return str;
+}
+std::string ScalarConverter::toString(float val)
+{
+    std::stringstream ss;
+    ss << val;
+    std::string str = ss.str();
+    if (str.find('e') == std::string::npos && str.find('.') == std::string::npos)
+        str += ".0";
+    str += "f";
+    return str;
 }
 
 void ScalarConverter::convert(std::string val)
@@ -169,12 +167,23 @@ void ScalarConverter::convert(std::string val)
 		else 
 		{
 			int toint = num;
-			if (toint >= 0 && toint <= 127 && isprint(static_cast<char>(toint)))
-				std::cout<<"char: \'" <<static_cast <char>(toint)<<"\'"<< std::endl;
+			if (toint >= 0 && toint <= 127)
+			{
+				if (isprint(static_cast<char>(toint)))
+				{
+					std::cout<<"char: \'" <<static_cast <char>(toint)<<"\'"<< std::endl;
+				}
+				else
+					std::cout<<"char: Non displayable\n";
+			}
 			else
-				std::cout<<"char: Non displayable\n";
+				std::cout<<"char: impossible\n";
+			
 		}
-		std::cout<<"int: " <<static_cast <int>(num)<< std::endl;
+		if (num <= INT_MAX && num >= INT_MIN)
+			std::cout<<"int: " <<static_cast <int>(num)<< std::endl;
+		else
+			std::cout<<"int: impossible\n";
 		std::cout<<"float: " <<toString(num)<< std::endl;
 		std::cout<<"double: " <<toString(static_cast <double>(num))<< std::endl;
 	}	
