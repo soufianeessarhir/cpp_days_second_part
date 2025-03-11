@@ -23,14 +23,14 @@
 class ScalarConverter
 {
 private:
+	ScalarConverter();
 	static bool IsInt(std::string val);
 	static bool IsFloat(std::string val);
 	static bool IsDouble(std::string val);
 public:
-	ScalarConverter();
 	ScalarConverter(const ScalarConverter& scal);
 	ScalarConverter & operator=(const ScalarConverter& scal);
-	virtual ~ScalarConverter() = 0;
+	~ScalarConverter();
 	static void convert(std::string val);
 	static std::string toString(float val);
 	static std::string toString(double val);

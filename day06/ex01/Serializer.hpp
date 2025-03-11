@@ -23,12 +23,11 @@ typedef unsigned long uintptr_t;
 class Serializer
 {
 private:
-	
-public:
 	Serializer();
+public:
 	Serializer(const Serializer & Sr);
 	Serializer & operator =(const Serializer & sr);
-	virtual ~Serializer()= 0;
+	~Serializer();
 	static uintptr_t serialize(Data* ptr);
 	static Data* deserialize(uintptr_t raw);
 	

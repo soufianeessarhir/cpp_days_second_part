@@ -32,7 +32,7 @@ ScalarConverter::~ScalarConverter()
 bool ScalarConverter::IsInt(std::string val)
 {
 	std::string::iterator it = val.begin();
-	if (*it == '-')
+	if (*it == '-' && isdigit(*(it + 1)))
 		it++;
 	for(; it != val.end();it++)
 		if (!isdigit(*it))
@@ -51,7 +51,7 @@ bool ScalarConverter::IsFloat(std::string val)
     bool hasDigit = false;
     bool hasDecimal = false;
     size_t i = 0;
-    if (i < numPart.length() && (numPart[i] == '-' || numPart[i] == '+'))
+    if (i < numPart.length() && (numPart[i] == '-'  && isdigit(*(numPart.begin() + 1))))
         i++;
     for (; i < numPart.length(); i++) {
         if (isdigit(numPart[i]))
@@ -67,7 +67,7 @@ bool ScalarConverter::IsDouble(std::string val)
 {
 	bool point = false;
 	std::string::iterator it = val.begin();
-	if (*it == '-')
+	if (*it == '-' && isdigit(*(it + 1)))
 		it++;
 	if(*it == '.')
 	{
