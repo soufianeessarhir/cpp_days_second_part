@@ -150,8 +150,8 @@ void ScalarConverter::convert(std::string val)
 	{
 		char *invalid;
 		errno = 0;
-		float num = strtof(val.c_str(),&invalid);
-		if (errno == ERANGE)
+		double num = strtod(val.c_str(),&invalid);
+		if (errno == ERANGE || num > FLT_MAX || num < -FLT_MAX)
 		{
 			std::cout << "char: impossible\n";
 			std::cout << "int: impossible\n";
@@ -242,7 +242,7 @@ void ScalarConverter::convert(std::string val)
 	{
 		std::cout << "char: impossible\n";
 		std::cout << "int: impossible\n";
-		std::cout << "float: " << val << "f\n";
+		std::cout << "float: " << val << "\n"; 
 		std::cout << "double: " << val.erase(3,1) << "\n";
 	}
 	else
