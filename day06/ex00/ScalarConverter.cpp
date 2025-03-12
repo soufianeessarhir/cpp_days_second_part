@@ -61,7 +61,7 @@ bool ScalarConverter::IsFloat(std::string val)
         else
             return false;
     }
-    return hasDigit;
+    return hasDigit && hasDecimal;
 }
 bool ScalarConverter::IsDouble(std::string val)
 {
