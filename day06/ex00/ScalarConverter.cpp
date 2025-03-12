@@ -90,7 +90,7 @@ bool ScalarConverter::IsDouble(std::string val)
 std::string ScalarConverter::toString(double val)
 {
     std::stringstream ss;
-    ss << val;
+    ss <<std::fixed <<val;
     std::string str = ss.str();
     if (str.find('e') == std::string::npos && str.find('.') == std::string::npos)
         str += ".0";
@@ -99,7 +99,7 @@ std::string ScalarConverter::toString(double val)
 std::string ScalarConverter::toString(float val)
 {
     std::stringstream ss;
-    ss << val;
+    ss <<std::fixed << val;
     std::string str = ss.str();
     if (str.find('e') == std::string::npos && str.find('.') == std::string::npos)
         str += ".0";
