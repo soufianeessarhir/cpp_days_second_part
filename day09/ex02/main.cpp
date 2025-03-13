@@ -20,8 +20,14 @@ int main(int ac , char **av)
 		std::cout<<"Usage: ./PmergeMe [numbers]\n";
 		return 1;
 	}
-	PmergeMe mr(av,ac);
-	mr.sort();
+	try {
+		PmergeMe mr(av,ac);
+		mr.sort();
+	}
+	catch (std::exception & e)
+	{
+		std::cout<<e.what()<<std::endl;
+	}
 	return 0;
 
 }

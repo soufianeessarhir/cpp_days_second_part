@@ -23,6 +23,7 @@ PmergeMe::PmergeMe(char** arg,int size)
 {
 	long long value;
 	char* end = NULL;
+	start_parse = get_time_in_microseconds();
 	for (int i = 1; i < size;++i)
 	{
 		errno = 0;
@@ -34,6 +35,7 @@ PmergeMe::PmergeMe(char** arg,int size)
 		vc.push_back(value);
 		dq.push_back(value);
 	}
+	end_parse = get_time_in_microseconds();
 }
 PmergeMe::PmergeMe(const PmergeMe & rhs)
 {
@@ -61,12 +63,28 @@ void PmergeMe::jacobsthalsequence(size_t len)
 
 void PmergeMe::sort()
 {
-	MergeInertionSort(dq);
-	for (size_t i = 0; i < dq.size(); i++)
-		std::cout<<dq[i]<<" ";
-	std::cout<<std::endl;
+	long long start = get_time_in_microseconds();
+	std::cout << "before ";
+	print(vc);
+	std::cout << "after ";
 	MergeInertionSort(vc);
-	for (size_t i = 0; i < vc.size(); i++)
-		std::cout<<vc[i]<<" ";
-	std::cout<<std::endl;
+	print(vc);
+	long long end = get_time_in_microseconds();
+	long long start2 = get_time_in_microseconds();
+	std::cout << "before ";
+	print(dq);
+	std::cout << "after ";
+	MergeInertionSort(dq);
+	print(dq);
+	long long end2 = get_time_in_microseconds();
+	std::cout << "Time to process a range of " << vc.size() << " 0 elements with std::vector: " <<  
+	static_cast<double>(end_parse - start_parse + end - start) << " us \n";
+	std::cout << "Time to process a range of " << vc.size() << " 0 elements with std::deque: " <<
+	static_cast<double>(end_parse - start_parse + end2 - start2) << " us \n";
+}
+
+long long PmergeMe::get_time_in_microseconds() {
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return static_cast<long long>(tv.tv_sec) * 1000000 + tv.tv_usec;
 }

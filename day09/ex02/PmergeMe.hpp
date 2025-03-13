@@ -21,9 +21,12 @@
 #include <cstring>
 #include <cstdlib>
 #include <climits>
+#include <sys/time.h>
 class PmergeMe
 {
 private:
+	long long start_parse;
+	long long end_parse;
 	std::vector<int> vc;
 	std::deque<int> dq;
 	std::vector<size_t> Jseq;
@@ -91,6 +94,14 @@ public:
 		return container;
 	}
 	void jacobsthalsequence(size_t len);
+	long long get_time_in_microseconds();
+	template <typename T>
+	void print(T& container)
+	{
+		for (size_t i = 0; i < container.size(); i++)
+			std::cout<<container[i]<<" ";
+		std::cout<<std::endl;
+	}
 };
 
 #endif
