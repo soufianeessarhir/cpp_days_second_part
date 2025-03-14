@@ -184,7 +184,7 @@ void ScalarConverter::convert(std::string val)
 			std::cout<<"int: " <<static_cast <int>(num)<< std::endl;
 		else
 			std::cout<<"int: impossible\n";
-		std::cout<<"float: " <<toString(num)<< std::endl;
+		std::cout<<"float: " <<toString(static_cast<float>(num))<< std::endl;
 		std::cout<<"double: " <<toString(static_cast <double>(num))<< std::endl;
 	}	
 	else if(IsDouble(val))
