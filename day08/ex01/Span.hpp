@@ -29,9 +29,19 @@ public:
 	Span& operator=(const Span& oth);
 	~Span();
 	void addNumber(unsigned int num);
-	void addNumber(std::vector<int>::iterator first, std::vector<int>::iterator);
 	unsigned int shortestSpan(void);
 	unsigned int longestSpan(void);
+	template <typename T>
+	void addNumber(T begin, T end)
+	{
+		if (size + std::distance(begin, end) > capacity)
+			throw std::out_of_range("span is full there is no place to add any new number");
+		for (T it = begin; it != end; ++it)
+		{
+			this->vect[size] = *it;
+			size++;
+		}	
+	}
 };
 
 #endif

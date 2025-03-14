@@ -10,10 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Array.hpp"
-
 #include <iostream>
-#include "Array.hpp" // Include your fixed class
+#include "Array.hpp"
 
 int main()
 {
@@ -43,7 +41,7 @@ int main()
 			std::cout << assignedArray[i] << " ";
 		std::cout << std::endl;
 		std::cout << "Trying to access index 10..." << std::endl;
-		std::cout << numbers[10] << std::endl; // Should throw exception
+		std::cout << numbers[10] << std::endl;
 
 	} catch (const std::exception &e) {
 		std::cerr << "Exception caught: " << e.what() << std::endl;

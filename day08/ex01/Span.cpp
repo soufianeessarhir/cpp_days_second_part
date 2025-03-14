@@ -73,15 +73,3 @@ unsigned int Span::longestSpan(void)
 	return (*(vect.rbegin()) - *(vect.begin()));
 }
 
-void Span::addNumber(std::vector<int>::iterator first, std::vector<int>::iterator last)
-{
-	int rem = this->capacity - this->size;
-	int dis = std::distance(first,last);
-	if (dis > rem)
-		throw std::runtime_error("not enough space to insert more numbers");
-	for(size_t i = size;i < capacity && first != last;++i,++first)
-	{
-		vect[i] = *first;
-		size++;
-	}
-}

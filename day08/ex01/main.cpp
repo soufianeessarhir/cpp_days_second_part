@@ -30,7 +30,6 @@ int main()
         sp.addNumber(20);
         sp.addNumber(6);
         sp.addNumber(15);
-
         std::cout << "Shortest Span: " << sp.shortestSpan() << std::endl;
         std::cout << "Longest Span: " << sp.longestSpan() << std::endl;
         sp.addNumber(100);
@@ -50,7 +49,9 @@ int main()
 	numbers1.push_back(1);
 	numbers1.push_back(2);
 	numbers1.push_back(3);
-    span1.addNumber(numbers1.begin(), numbers1.end());
+	numbers1.push_back(4);
+	numbers1.push_back(5);
+	span1.addNumber(numbers1.begin(), numbers1.end());
 	std::cout<<span1.longestSpan()<<"\n";
 	std::cout<<span1.shortestSpan()<<"\n";
     return 0;
